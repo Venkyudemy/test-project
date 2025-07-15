@@ -1,0 +1,23 @@
+@RestController
+@CrossOrigin(origins = "http://localhost:3000") // allow React to call backend
+@RequestMapping("/api/chat")
+public class ChatbotController {
+
+    @PostMapping
+    public ResponseEntity<String> getBotReply(@RequestBody String message) {
+        String lower = message.toLowerCase();
+        String reply;
+
+        if (lower.contains("hello") || lower.contains("hi")) {
+            reply = "Hello! How can I help you today?";
+        } else if (lower.contains("services")) {
+            reply = "We offer web, mobile, AI, and cloud solutions.";
+        } else if (lower.contains("pricing") || lower.contains("cost")) {
+            reply = "Our pricing depends on the project size. Contact us for a quote.";
+        } else {
+            reply = "🤖 I'm not sure I understand. Could you rephrase?";
+        }
+
+        return ResponseEntity.ok(reply);
+    }
+}
