@@ -2,21 +2,25 @@
 FROM eclipse-temurin:17-jdk AS builder
 WORKDIR /workspace/app
 
-# Copy Maven wrapper and dependencies first (cache optimization)
-COPY mvnw .
-COPY .mvn .mvn
+# Copy only necessary build files first (cache optimization)
 COPY pom.xml .
-RUN ./mvnw dependency:go-offline
+COPY mvnw* ./
+COPY .mvn/ .mvn/
 
-# Copy source code and build
+# Install dependencies
+RUN ./mvnw dependency:go-offline -B
+
+# Copy source code
 COPY src src
+
+# Build application
 RUN ./mvnw package -DskipTests
 
 # Runtime stage
 FROM eclipse-temurin:17-jre
 WORKDIR /app
 
-# Copy built artifact from builder stage
+# Copy built artifact
 COPY --from=builder /workspace/app/target/*.jar app.jar
 
 # Expose application port
