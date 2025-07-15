@@ -1,0 +1,32 @@
+/* src/components/MessageItem.css */
+
+.message-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  max-width: 75%;
+  font-size: 14px;
+}
+
+.message-item.user {
+  background-color: #dbeafe;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.message-item.ai {
+  background-color: #e5e7eb;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.message-header {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.timestamp {
+  font-size: 11px;
+  color: #9ca3af;
+}
