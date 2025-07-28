@@ -340,7 +340,7 @@ def home():
 </head>
 <body>
     <header class="gold-header">
-        <div class="logo">GOLDEN PLATES</div>
+        <div class="logo">GOLDEN PLATES && GOLDEN SPOONS </div>
         <div class="tagline">Premium Culinary Experience</div>
     </header>
 
